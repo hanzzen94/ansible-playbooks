@@ -1,5 +1,8 @@
 - name: Main
   hosts: all
-  become: true
 
-- include: secure_root.yaml
+- name: Include secure root playbook
+  ansible.builtin.import_playbook: secure_root.yaml
+
+- name: Include facts playbook
+  ansible.builtin.import_playbook: facts.yaml

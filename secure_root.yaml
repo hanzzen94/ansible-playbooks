@@ -22,6 +22,7 @@
         line: 'PermitRootLogin no'
         state: present
       notify: restart sshd
+      when: ansible_facts.services['sshd'] is defined and ansible_facts.distribution == 'Ubuntu'
 
     - name: Disable administrator login
       ansible.builtin.lineinfile:
@@ -30,4 +31,4 @@
         line: 'PermitRootLogin no'
         state: present
       notify: restart sshd
-      when: ansible_distribution == 'Ubuntu'
+      when: ansible_facts.services['sshd'] is defined and ansible_facts.distribution == 'Ubuntu'
