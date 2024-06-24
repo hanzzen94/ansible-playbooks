@@ -1,5 +1,6 @@
 - name: Install packages
   hosts: all
+  become: true
   tasks:
     - name: Install ansible
       ansible.builtin.package:
