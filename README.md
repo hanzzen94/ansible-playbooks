@@ -14,3 +14,9 @@ This playbook includes the following tasks:
 * Secure administrator account
 * Disable root login
 * Disable administrator login
+
+### Facts
+
+This playbook includes the following tasks:
+
+* Gather facts
