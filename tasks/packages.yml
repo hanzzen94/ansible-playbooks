@@ -1,0 +1,8 @@
+- name: Install packages
+  hosts: all
+  tasks:
+    - name: Install ansible
+      ansible.builtin.package:
+        name:
+          - ansible
+        state: present
