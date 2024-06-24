@@ -2,10 +2,10 @@
   hosts: all
 
 - name: Include secure root playbook
-  ansible.builtin.import_playbook: tasks/secure_root.yaml
+  ansible.builtin.import_playbook: tasks/secure_root.yml
 
 - name: Include facts playbook
-  ansible.builtin.import_playbook: tasks/facts.yaml
+  ansible.builtin.import_playbook: tasks/facts.yml
 
 - name: Include packages playbook
-  ansible.builtin.import_playbook: tasks/packages.yaml
+  ansible.builtin.import_playbook: tasks/packages.yml
