@@ -1,9 +1,5 @@
-- name: Gather facts
-  hosts: all
-  become: true
-  tasks:
-    - name: Log facts to file
-      ansible.builtin.copy:
-        content: "{{ ansible_facts | to_nice_json(indent=2) }}"
-        dest: /tmp/facts.json
-        mode: "0644"
+- name: Log facts to file
+  ansible.builtin.copy:
+    content: "{{ ansible_facts | to_nice_json(indent=2) }}"
+    dest: /tmp/facts.json
+    mode: "0644"

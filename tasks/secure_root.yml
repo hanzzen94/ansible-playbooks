@@ -1,34 +1,30 @@
-- name: Secure root
-  hosts: all
-  become: true
-  tasks:
-    - name: Secure root account
-      ansible.builtin.user:
-        name: root
-        password: "!"
-        shell: /usr/sbin/nologin
+- name: Secure root account
+  ansible.builtin.user:
+    name: root
+    password: "!"
+    shell: /usr/sbin/nologin
 
-    - name: Secure administrator account
-      ansible.builtin.user:
-        name: administrator
-        password: "!"
-        shell: /usr/sbin/nologin
-      when: ansible_facts.distribution == 'Ubuntu'
+- name: Secure administrator account
+  ansible.builtin.user:
+    name: administrator
+    password: "!"
+    shell: /usr/sbin/nologin
+  when: ansible_facts.distribution == 'Ubuntu'
 
-    - name: Disable root login
-      ansible.builtin.lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^PermitRootLogin'
-        line: 'PermitRootLogin no'
-        state: present
-      notify: restart sshd
-      when: ansible_facts.services['sshd'] is defined
+- name: Disable root login
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+  notify: restart sshd
+  when: ansible_facts.services['sshd'] is defined
 
-    - name: Disable administrator login
-      ansible.builtin.lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: '^PermitRootLogin'
-        line: 'PermitRootLogin no'
-        state: present
-      notify: restart sshd
-      when: ansible_facts.services['sshd'] is defined and ansible_facts.distribution == 'Ubuntu'
+- name: Disable administrator login
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+  notify: restart sshd
+  when: ansible_facts.services['sshd'] is defined and ansible_facts.distribution == 'Ubuntu'

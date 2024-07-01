@@ -1,11 +1,16 @@
 - name: Main
   hosts: all
+  become: true
 
-- name: Include secure root playbook
-  ansible.builtin.import_playbook: tasks/secure_root.yml
+  tasks:
+    - name: Include tasks
+      ansible.builtin.include_tasks:
+        file: tasks/packages.yml
 
-- name: Include facts playbook
-  ansible.builtin.import_playbook: tasks/facts.yml
+    - name: Include tasks
+      ansible.builtin.include_tasks:
+        file: tasks/facts.yml
 
-- name: Include packages playbook
-  ansible.builtin.import_playbook: tasks/packages.yml
+    - name: Include tasks
+      ansible.builtin.include_tasks:
+        file: tasks/secure_root.yml
